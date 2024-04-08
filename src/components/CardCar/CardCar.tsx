@@ -3,68 +3,30 @@ import { Grid, Card, CardContent, CardMedia, Typography, CardActions, Button, Di
 import { CarType } from '../../models/interfaces/ResultApi'
 import { NavLink } from 'react-router-dom'
 import { AuthContext } from '../../contexts/AuthContext'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { api } from '../../lib/axios'
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { GetCars } from '../../lib/getCars'
-// import { GetCars } from '../../lib/getCars'
 import SpeedIcon from '@mui/icons-material/Speed';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
-
 interface CardProps {
   car: CarType
-  setCars: React.Dispatch<React.SetStateAction<CarType[] | undefined>>
+  setCars?: React.Dispatch<React.SetStateAction<CarType[] | undefined>>
 }
 
-const CardCar = ({ car, setCars }: CardProps) => {
+const CardCar = ({ car }: CardProps) => {
 
-  const { auth, setAuth } = useContext(AuthContext)
-  const [callGet, setCallGet] = useState('')
+  const { auth } = useContext(AuthContext)
 
   
   const handleFavorite = () => {
-    // const userAddFavorite = auth
-    // // userAddFavorite?.favoriteCars.push(idCar) pode usar car.id
-    // userAddFavorite?.favoriteCars!.push(car)
-    // setAuth(userAddFavorite)
-    // api.put(`/users/${auth?.id}`, userAddFavorite)
-    // setCallGet(' ')
-    // console.log(callGet);
-
-
-
-
     console.log(`/${auth?.id}/favorite/${car.id}`);
     
     api.post('/' + auth?.id + '/' + 'favorite/' + car.id)
   }
   
   const handleUnfavorite = () => {
-    // const userRemoveFavorite = auth!
-    // // const index = auth?.favoriteCars.indexOf(idCar) pode usar car.id
-    // const index = auth?.favoriteCars!.indexOf(car)
-    // userRemoveFavorite.favoriteCars!.splice(index!, 1);
-    // setAuth(userRemoveFavorite)
-    // api.put(`/users/${auth?.id}`, userRemoveFavorite)
-    
-    // setCallGet('1')
-    // const { getedCars } = GetCars()
-    // setCars(getedCars)
-
-
-
-
-    // const userRemoveFavorite = auth!
-    // // const index = auth?.favoriteCars.indexOf(idCar) pode usar car.id
-    // const index = auth?.favoriteCars!.indexOf(car)
-    // userRemoveFavorite.favoriteCars!.splice(index!, 1);
-    // setAuth(userRemoveFavorite)
     api.post(`/3/favorite/1`)
-    
-    // setCallGet('1')
-    // const { getedCars } = GetCars()
-    // setCars(getedCars)
   }
 
   const idList: string[] = []
